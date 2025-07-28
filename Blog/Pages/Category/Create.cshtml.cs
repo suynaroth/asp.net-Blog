@@ -18,14 +18,17 @@ namespace Blog.Pages.Category
         {
         }
 
+        public string IsNameValid { get; set; } = "";
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(Category);
+                Console.WriteLine(Category.Name);
+                await _db.Categories.AddAsync(Category);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Index");
+                return RedirectToPage("index");
             }
+            IsNameValid = "is-invalid";
             return Page();
         }
     }

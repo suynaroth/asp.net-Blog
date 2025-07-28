@@ -10,11 +10,11 @@ namespace Blog.Models
     public class AppDBContext(IConfiguration configuration) : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var connectionString = configuration.GetConnectionString("DefaultConnection"); 
-            optionsBuilder.UseSqlServer(connectionString);
+        {  
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         }
-
         public DbSet<Categories> Categories { get; set; }
+
+        public DbSet<Tags> Tags { get; set; }
     }
 }
